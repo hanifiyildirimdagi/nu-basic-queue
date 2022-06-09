@@ -1,0 +1,20 @@
+{
+  "name": "nu-basic-queue",
+  "version": "1.0.0",
+  "description": "Basic message queue for internal system",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "example": "tsc --outDir dist/dist-example && node ./dist/dist-example/example/main.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hanifiyildirimdagi/nu-basic-queue.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hanifiyildirimdagi/nu-basic-queue/issues"
+  },
+  "homepage": "https://github.com/hanifiyildirimdagi/nu-basic-queue#readme"
+}
