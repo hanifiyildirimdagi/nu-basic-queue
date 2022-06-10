@@ -1,6 +1,6 @@
 {
   "name": "necessary-utils-basic-queue",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Necessary utils for the basic message queue in the internal system.",
   "main": "dist/index.umd.min.js",
   "module": "dist/index.es.js",
