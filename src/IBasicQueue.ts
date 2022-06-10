@@ -39,6 +39,12 @@ export default interface IBasicQueue<T extends BasicQueueMessage> {
   Clear(): Array<T>;
 
   /**
+   * ## Force Stop Queue Flow
+   * This method forces the stop queue flow.
+   */
+  Stop():void;
+
+  /**
    * ## Interceptorss
    */
   Intercept: IBasicQueueInterceptors;

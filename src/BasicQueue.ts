@@ -43,7 +43,7 @@ export default class BasicQueue<T extends BasicQueueMessage>
   }
 
   public Ack(): void {
-    if (this._currentMessage === null) return;
+    if (this._currentMessage === null || this.Handler == null) return;
     const i = this._messages.indexOf(this._currentMessage);
     if (i !== -1) this._messages.splice(i, 1);
     this._currentMessage = null;
@@ -64,10 +64,14 @@ export default class BasicQueue<T extends BasicQueueMessage>
     return this._messages.length;
   }
 
-  Clear(): Array<T> {
+  public Clear(): Array<T> {
     let removedMessages = this._messages.filter((x) => !x.UnAck);
     this._messages = this._messages.filter((x) => !removedMessages.includes(x));
     return removedMessages;
+  }
+
+  public Stop(): void {
+    this._queueStarted = false;
   }
 
   public Intercept: IBasicQueueInterceptors = {
@@ -112,9 +116,11 @@ export default class BasicQueue<T extends BasicQueueMessage>
     this._queueStarted = true;
     while (this._queueStarted) {
       this._currentMessage = this._messages[0];
-      await wait(this.Settings.QueueCoolDownTime);
-      if (this.Handler === null || this._currentMessage.UnAck === true)
+      if (this.Handler === null || this._currentMessage.UnAck === true) {
+        await wait(this.Settings.QueueRestartTime);
         continue;
+      }
+      await wait(this.Settings.QueueCoolDownTime);
       try {
         this._currentMessage.UnAck = true;
         await this.Handler(this._currentMessage);
