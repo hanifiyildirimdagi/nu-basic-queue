@@ -1,6 +1,7 @@
 import QueueSettings from "./QueueSettings";
 import { BasicQueueMessage } from "./BasicQueueMessage";
 import { HandlerFunction } from "./types";
+import { IBasicQueueInterceptors } from "./IBasicQueueInterceptor";
 
 export default interface IBasicQueue<T extends BasicQueueMessage> {
   Settings: QueueSettings;
@@ -36,5 +37,9 @@ export default interface IBasicQueue<T extends BasicQueueMessage> {
    * @returns Removed Message List
    */
   Clear(): Array<T>;
-  
+
+  /**
+   * ## Interceptorss
+   */
+  Intercept: IBasicQueueInterceptors;
 }

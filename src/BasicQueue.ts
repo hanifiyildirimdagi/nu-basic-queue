@@ -1,8 +1,9 @@
 import IBasicQueue from "./IBasicQueue";
 import QueueSettings from "./QueueSettings";
 import { BasicQueueMessage } from "./BasicQueueMessage";
-import { HandlerFunction } from "./types";
+import { CustomizeInterceptorHandler, HandlerFunction } from "./types";
 import { wait } from "./utils";
+import { IBasicQueueInterceptors } from "./IBasicQueueInterceptor";
 
 /**
  * # Simple Queue System
@@ -68,6 +69,43 @@ export default class BasicQueue<T extends BasicQueueMessage>
     this._messages = this._messages.filter((x) => !removedMessages.includes(x));
     return removedMessages;
   }
+
+  public Intercept: IBasicQueueInterceptors = {
+    WhenZeroMessage: (): IBasicQueueInterceptors => {
+      if (this.MessageCount === 0)
+        throw new Error("Zero message count. Process was intercepted.");
+      return this.Intercept;
+    },
+    WhenAnyMessage: (): IBasicQueueInterceptors => {
+      if (this.MessageCount > 0)
+        throw new Error("Queue contains message. Process was intercepted.");
+      return this.Intercept;
+    },
+    When: async <T extends BasicQueueMessage>(
+      handler: CustomizeInterceptorHandler<T>
+    ): Promise<IBasicQueueInterceptors> => {
+      let currentMessage: T | null = Object.assign(
+        {} as T,
+        this._currentMessage
+      );
+      const result = await handler(this.MessageCount, currentMessage);
+      if (result !== true)
+        throw new Error(
+          "Custom handler returns false. Process was intercepted."
+        );
+      return this.Intercept;
+    },
+    WhenQueueStarted: (): IBasicQueueInterceptors => {
+      if (this._queueStarted)
+        throw new Error("Queue processing right now. Process was intercepted.");
+      return this.Intercept;
+    },
+    WhenQueueStopped: (): IBasicQueueInterceptors => {
+      if (!this._queueStarted)
+        throw new Error("Queue stopped. Process was intercepted.");
+      return this.Intercept;
+    },
+  };
 
   private async start(): Promise<void> {
     if (this._queueStarted) return;
