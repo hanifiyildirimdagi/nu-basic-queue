@@ -1,20 +1,34 @@
 {
-  "name": "nu-basic-queue",
-  "version": "1.0.0",
-  "description": "Basic message queue for internal system",
-  "main": "index.js",
+  "name": "necessary-utils-basic-queue",
+  "version": "1.0.2",
+  "description": "Necessary utils for the basic message queue in the internal system.",
+  "main": "dist/index.umd.min.js",
+  "module": "dist/index.es.js",
+  "types": "dist/main.d.ts",
+  "files": ["/dist**/*"],
+  "type": "commonjs",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "example": "tsc --outDir dist/dist-example && node ./dist/dist-example/example/main.js"
+    "example": "tsc --outDir dist/dist-example && node ./dist/dist-example/example/main.js",
+    "build-publish": "yarn rollup -c"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/hanifiyildirimdagi/nu-basic-queue.git"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/hanifiyildirimdagi/nu-basic-queue/issues"
   },
-  "homepage": "https://github.com/hanifiyildirimdagi/nu-basic-queue#readme"
+  "homepage": "https://github.com/hanifiyildirimdagi/nu-basic-queue#readme",
+  "dependencies": {
+    "rollup": "^2.75.6",
+    "typescript": "next"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@rollup/plugin-babel": "^5.3.1",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.32.1"
+  }
 }
