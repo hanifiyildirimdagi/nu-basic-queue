@@ -1,4 +1,6 @@
 /**
+ * # DEPRECATED
+ * 
  * This working like Task.Delay() on the C#
  * @param ms
  * @returns

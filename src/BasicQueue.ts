@@ -2,8 +2,8 @@ import IBasicQueue from "./IBasicQueue";
 import QueueSettings from "./QueueSettings";
 import { BasicQueueMessage } from "./BasicQueueMessage";
 import { CustomizeInterceptorHandler, HandlerFunction } from "./types";
-import { wait } from "./utils";
 import { IBasicQueueInterceptors } from "./IBasicQueueInterceptor";
+import {Timing} from "necessary-utils-core"
 
 /**
  * # Simple Queue System
@@ -117,10 +117,10 @@ export default class BasicQueue<T extends BasicQueueMessage>
     while (this._queueStarted) {
       this._currentMessage = this._messages[0];
       if (this.Handler === null || this._currentMessage.UnAck === true) {
-        await wait(this.Settings.QueueRestartTime);
+        await Timing.Sleep(this.Settings.QueueRestartTime);
         continue;
       }
-      await wait(this.Settings.QueueCoolDownTime);
+      await Timing.Sleep(this.Settings.QueueCoolDownTime);
       try {
         this._currentMessage.UnAck = true;
         await this.Handler(this._currentMessage);
