@@ -1,6 +1,6 @@
 {
   "name": "necessary-utils-basic-queue",
-  "version": "1.2.0",
+  "version": "1.3.5",
   "description": "Necessary utils for the basic message queue in the internal system.",
   "main": "dist/index.umd.min.js",
   "module": "dist/index.es.js",
@@ -17,7 +17,7 @@
   "scripts": {
     "build": "yarn rollup -c",
     "test": "mocha",
-    "relase": "yarn test && yarn build"
+    "release": "yarn test && yarn build"
   },
   "repository": {
     "type": "git",
