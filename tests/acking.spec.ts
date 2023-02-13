@@ -1,9 +1,8 @@
-import BasicQueue from "../src/BasicQueue";
-import { BasicQueueMessage } from "../src/BasicQueueMessage";
-
-import { expect } from "chai";
-import "mocha";
-import QueueSettings from "../src/QueueSettings";
+import {
+  BasicQueue,
+  BasicQueueMessage,
+  QueueSettings,
+} from '../packages/necessary-utils-basic-queue/src';
 
 const settings = new QueueSettings();
 
@@ -17,19 +16,19 @@ function createTestQueue() {
   return new BasicQueue<testMessage>(settings);
 }
 
-describe("Acking", () => {
-  it("Manuel Acking When Queue Idle", () => {
+describe('Acking', () => {
+  it('Manuel Acking When Queue Idle', () => {
     const queue = createTestQueue();
     queue.PushMessage(new testMessage());
     queue.Ack();
     expect(queue.MessageCount).to.equals(1);
     queue.Stop();
   });
-  it("Manuel Acking When Queue Processing", async () => {
+  it('Manuel Acking When Queue Processing', async () => {
     const queue = createTestQueue();
     queue.Consume(async (m: testMessage) => {
-        queue.Ack()
-    },false);
+      queue.Ack();
+    }, false);
     queue.PushMessage(new testMessage());
     await new Promise((resolve) => setTimeout(resolve, 5));
     expect(queue.MessageCount).to.equals(0);

@@ -1,0 +1,30 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noImplicitReturns": false,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2017", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@nu-queue/necessary-utils-basic-queue": [
+        "packages/necessary-utils-basic-queue/src/index.ts",
+        "dist/packages/necessary-utils-basic-queue/src/index.ts"
+      ],
+      "@nu-queue/nu-core": [
+        "packages/nu-core/src/index.ts",
+        "dist/packages/nu-core/src/index.ts"
+      ]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

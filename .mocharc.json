@@ -1,4 +1,0 @@
-{
-  "spec": ["tests/*.ts"],
-  "require":"ts-node/register"
-}
