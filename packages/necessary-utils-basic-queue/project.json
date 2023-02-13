@@ -1,0 +1,41 @@
+{
+  "name": "necessary-utils-basic-queue",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/necessary-utils-basic-queue/src",
+  "implicitDependencies": ["nu-core"],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/necessary-utils-basic-queue",
+        "main": "packages/necessary-utils-basic-queue/src/index.ts",
+        "tsConfig": "packages/necessary-utils-basic-queue/tsconfig.lib.json",
+        "assets": ["packages/necessary-utils-basic-queue/*.md"]
+      },
+      "configurations": {
+        "production": {
+          "main": "packages/necessary-utils-basic-queue/src/index.ts"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["packages/necessary-utils-basic-queue/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/packages/necessary-utils-basic-queue"
+      ],
+      "options": {
+        "jestConfig": "packages/necessary-utils-basic-queue/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

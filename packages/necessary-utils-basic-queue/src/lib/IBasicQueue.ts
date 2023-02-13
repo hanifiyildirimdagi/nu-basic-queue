@@ -1,9 +1,9 @@
-import QueueSettings from "./QueueSettings";
+import { QueueSettings } from "./QueueSettings";
 import { BasicQueueMessage } from "./BasicQueueMessage";
 import { HandlerFunction } from "./types";
 import { IBasicQueueInterceptors } from "./IBasicQueueInterceptor";
 
-export default interface IBasicQueue<T extends BasicQueueMessage> {
+export interface IBasicQueue<T extends BasicQueueMessage> {
   Settings: QueueSettings;
   /**
    * ## ACK
@@ -42,7 +42,7 @@ export default interface IBasicQueue<T extends BasicQueueMessage> {
    * ## Force Stop Queue Flow
    * This method forces the stop queue flow.
    */
-  Stop():void;
+  Stop(): void;
 
   /**
    * ## Interceptorss

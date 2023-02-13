@@ -23,6 +23,12 @@ yarn add necessary-utils-basic-queue
 npm install necessary-utils-basic-queue --save
 ```
 
+## Building
+
+```sh
+yarn build
+```
+
 ## Example
 
 ```ts

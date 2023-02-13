@@ -1,0 +1,8 @@
+{
+  "version": 2,
+  "projects": {
+    "necessary-utils-basic-queue": "packages/necessary-utils-basic-queue",
+    "nu-core": "packages/nu-core"
+  },
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json"
+}

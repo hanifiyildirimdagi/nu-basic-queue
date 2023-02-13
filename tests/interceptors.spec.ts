@@ -1,9 +1,4 @@
-import BasicQueue from "../src/BasicQueue";
-import { BasicQueueMessage } from "../src/BasicQueueMessage";
-
-import { expect } from "chai";
-import "mocha";
-import QueueSettings from "../src/QueueSettings";
+import {BasicQueue, BasicQueueMessage, QueueSettings} from "../packages/necessary-utils-basic-queue/src";
 
 const settings = new QueueSettings();
 

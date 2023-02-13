@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-empty-function */
 interface IQueueSettings {
   /**
    * Its defines transition time (milliseconds)  per message.
@@ -13,8 +14,8 @@ interface IQueueSettings {
   QueueRestartTime: number;
 }
 
-export default class QueueSettings implements IQueueSettings {
-  private _queueRestartTime: number = 100;
+export class QueueSettings implements IQueueSettings {
+  private _queueRestartTime = 100;
   public get QueueRestartTime(): number {
     return this._queueRestartTime;
   }
@@ -23,6 +24,6 @@ export default class QueueSettings implements IQueueSettings {
     else this._queueRestartTime = value;
   }
 
-  public QueueCoolDownTime: number = 0;
+  public QueueCoolDownTime = 0;
   constructor() {}
 }
